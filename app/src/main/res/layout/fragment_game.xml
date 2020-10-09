@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="gameViewModel"
+            type="com.fragmentise.hangman2.ui.game.GameViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/answerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@{gameViewModel.answerText}"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:changeTextColor = "@{gameViewModel.correctWord}"/>
+
+        <TextView
+            android:id="@+id/categoryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@{gameViewModel.categoryText}"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/finish_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> gameViewModel.nextWord()}"
+            android:text="Next Word"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonX" />
+
+        <Button
+            android:id="@+id/buttonA"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginStart="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/A_btn)}"
+            android:text="@string/A_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[0] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonB"
+            app:layout_constraintEnd_toStartOf="@+id/buttonB"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonB"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/B_btn)}"
+            android:text="@string/B_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[1] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonC"
+            app:layout_constraintEnd_toStartOf="@+id/buttonC"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonA" />
+
+        <Button
+            android:id="@+id/buttonC"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/C_btn)}"
+            android:text="@string/C_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[2] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonD"
+            app:layout_constraintEnd_toStartOf="@+id/buttonD"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonB" />
+
+        <Button
+            android:id="@+id/buttonD"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginTop="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/D_btn)}"
+            android:text="@string/D_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[3] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/buttonE"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonC"
+            app:layout_constraintTop_toBottomOf="@+id/answerText" />
+
+        <Button
+            android:id="@+id/buttonE"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/E_btn)}"
+            android:text="@string/E_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[4] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonD"
+            app:layout_constraintEnd_toStartOf="@+id/buttonF"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonD" />
+
+        <Button
+            android:id="@+id/buttonF"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/F_btn)}"
+            android:text="@string/F_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[5] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonE"
+            app:layout_constraintEnd_toStartOf="@+id/buttonG"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonE" />
+
+        <Button
+            android:id="@+id/buttonG"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginEnd="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/G_btn)}"
+            android:text="@string/G_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[6] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonF" />
+
+        <Button
+            android:id="@+id/buttonH"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginStart="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/H_btn)}"
+            android:text="@string/H_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[7] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonI"
+            app:layout_constraintEnd_toStartOf="@+id/buttonI"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonI"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/I_btn)}"
+            android:text="@string/I_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[8] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonJ"
+            app:layout_constraintEnd_toStartOf="@+id/buttonJ"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonH" />
+
+        <Button
+            android:id="@+id/buttonJ"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/J_btn)}"
+            android:text="@string/J_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[9] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonK"
+            app:layout_constraintEnd_toStartOf="@+id/buttonK"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonI" />
+
+        <Button
+            android:id="@+id/buttonK"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/K_btn)}"
+            android:text="@string/K_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[10] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/buttonL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonJ"
+            app:layout_constraintTop_toBottomOf="@+id/buttonD" />
+
+        <Button
+            android:id="@+id/buttonL"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/L_btn)}"
+            android:text="@string/L_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[11] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonK"
+            app:layout_constraintEnd_toStartOf="@+id/buttonM"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonK" />
+
+        <Button
+            android:id="@+id/buttonM"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/M_btn)}"
+            android:text="@string/M_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[12] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonL"
+            app:layout_constraintEnd_toStartOf="@+id/buttonN"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonL" />
+
+        <Button
+            android:id="@+id/buttonN"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginEnd="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/N_btn)}"
+            android:text="@string/N_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[13] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonM" />
+
+        <Button
+            android:id="@+id/buttonO"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginStart="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/O_btn)}"
+            android:text="@string/O_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[14] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonP"
+            app:layout_constraintEnd_toStartOf="@+id/buttonP"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonP"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/P_btn)}"
+            android:text="@string/P_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[15] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonQ"
+            app:layout_constraintEnd_toStartOf="@+id/buttonQ"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonO" />
+
+        <Button
+            android:id="@+id/buttonQ"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/Q_btn)}"
+            android:text="@string/Q_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[16] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonR"
+            app:layout_constraintEnd_toStartOf="@+id/buttonR"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonP" />
+
+        <Button
+            android:id="@+id/buttonR"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/R_btn)}"
+            android:text="@string/R_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[17] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/buttonS"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonQ"
+            app:layout_constraintTop_toBottomOf="@+id/buttonK" />
+
+        <Button
+            android:id="@+id/buttonS"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/S_btn)}"
+            android:text="@string/S_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[18] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonR"
+            app:layout_constraintEnd_toStartOf="@+id/buttonT"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonR" />
+
+        <Button
+            android:id="@+id/buttonT"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/T_btn)}"
+            android:text="@string/T_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[19] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonS"
+            app:layout_constraintEnd_toStartOf="@+id/buttonU"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonS" />
+
+        <Button
+            android:id="@+id/buttonU"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginEnd="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/U_btn)}"
+            android:text="@string/U_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[20] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonT"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonT" />
+
+        <Button
+            android:id="@+id/buttonV"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginStart="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/V_btn)}"
+            android:text="@string/V_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[21] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonW"
+            app:layout_constraintEnd_toStartOf="@+id/buttonW"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonW"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/W_btn)}"
+            android:text="@string/W_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[22] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonX"
+            app:layout_constraintEnd_toStartOf="@+id/buttonX"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonV" />
+
+        <Button
+            android:id="@+id/buttonX"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/X_btn)}"
+            android:text="@string/X_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[23] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/buttonY"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonW"
+            app:layout_constraintTop_toBottomOf="@+id/buttonR" />
+
+        <Button
+            android:id="@+id/buttonY"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/Y_btn)}"
+            android:text="@string/Y_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[24] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonX"
+            app:layout_constraintEnd_toStartOf="@+id/buttonZ"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonX" />
+
+        <Button
+            android:id="@+id/buttonZ"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/letter_button_width"
+            android:layout_height="@dimen/letter_button_height"
+            android:layout_marginEnd="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> gameViewModel.letterClick(@string/Z_btn)}"
+            android:text="@string/Z_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="@{gameViewModel.hide[25] ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonY" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryText"
+            app:hangmanIcon="@{gameViewModel.hangStage}"/>
+
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{gameViewModel.currentTimeString}"
+            app:layout_constraintBottom_toTopOf="@+id/finish_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonX"
+            tools:text="0:00"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
